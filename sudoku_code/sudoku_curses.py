@@ -94,6 +94,8 @@ def navigation(stdscr,selected_index,grid):
 		stdscr.addstr(5,horiz,"--")
 		stdscr.addstr(11,horiz,"--")
 		horiz+=1
+	stdscr.addstr(23,0,"Press \"Enter\" After Filling to check if its correct")
+	stdscr.addstr(22,0,"Press \"BackSpace\" to remove an entry")
 	stdscr.refresh()
 
 
