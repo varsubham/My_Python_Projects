@@ -1,6 +1,6 @@
 #Sudoku Game on Terminal
 ###### created by- varsubham
-####### email- varsubham@gmail.com
+###### email- varsubham@gmail.com
 
 
 This is a simple sudoku game running on terminal using Python curses library.
