@@ -24,8 +24,8 @@ def main(stdscr):
 	
 	#initial_grid=[[0]*9]*9
 	#initial_grid=sudoku_v1.main(grid)
-	new_arr=copy.deepcopy(grid)
-	sudoku_solver_algorithm.main(new_arr)
+	solved_grid=copy.deepcopy(grid)
+	sudoku_solver_algorithm.main(solved_grid)
 	navigation(stdscr,current_index,grid)
 
 	#print(initial_grid)
@@ -42,11 +42,12 @@ def main(stdscr):
 			current_index[1]-=1
 		elif(key==curses.KEY_RIGHT and current_index[1]<8):
 			current_index[1]+=1
-		elif(key==10):
+		'''elif(key==10):
+			print(grid==solved_grid)
 			if(grid==new_arr):
 				stdscr.addstr(20,20,"YOu won")
 			elif(grid!=new_arr):
-				stdscr.addstr(20,20,"You loose")
+				stdscr.addstr(20,20,"You loose")'''
 		if(grid[current_index[0]][current_index[1]]==0):
 			if(key>=48 and key<=57):
 				stdscr.addstr(2*current_index[0],4*current_index[1], chr(key))
@@ -56,8 +57,13 @@ def main(stdscr):
 			if(key==263):
 				stdscr.addstr(2*current_index[0],4*current_index[1], str(0))
 				grid[current_index[0]][current_index[1]]=0
-			
-
+				new_arr.remove([current_index[0],current_index[1]])
+				#print(new_arr)
+		if((key==curses.KEY_ENTER or key in [10,13])):
+			if(grid==solved_grid):
+				stdscr.addstr(20,20,"True ")
+			else:
+				stdscr.addstr(20,20,"False")
 		stdscr.refresh()
 		navigation(stdscr,current_index,grid)
 	
