@@ -1,37 +1,29 @@
 import curses
-#import time
 import sudoku_solver_algorithm
 import copy
+import random_sudoku
 
 def main(stdscr):
-	i=0
 	curses.curs_set(0)
 	curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_WHITE)
 	current_index=[0,0]
 	
 	new_arr=[]
-	grid=[
-    [8, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 3, 6, 0, 0, 0, 0, 0],
-    [0, 7, 0, 0, 9, 0, 2, 0, 0],
-    [0, 5, 0, 0, 0, 7, 0, 0, 0],
-    [0, 0, 0, 0, 4, 5, 7, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 3, 0],
-    [0, 0, 1, 0, 0, 0, 0, 6, 8],
-    [0, 0, 8, 5, 0, 0, 0, 1, 0],
-    [0, 9, 0, 0, 0, 0, 4, 0, 0],
-]
 	
+	rand_grid_to_solve=random_sudoku.random_grid()
 	#initial_grid=[[0]*9]*9
 	#initial_grid=sudoku_v1.main(grid)
-	solved_grid=copy.deepcopy(grid)
+	solved_grid=copy.deepcopy(rand_grid_to_solve)
 	sudoku_solver_algorithm.main(solved_grid)
+	grid=random_sudoku.new_sudoku(solved_grid)
+
 	navigation(stdscr,current_index,grid)
 
 	#print(initial_grid)
 	#print(new_arr)
 	#print(sudoku_solver_algorithm.grid)
 	#print(sudoku_solver_algorithm.main(grid))
+	#print(solved_grid)
 	while(True):
 		key=stdscr.getch()
 		if(key==curses.KEY_UP and current_index[0]>0):
@@ -60,6 +52,7 @@ def main(stdscr):
 				new_arr.remove([current_index[0],current_index[1]])
 				#print(new_arr)
 		if((key==curses.KEY_ENTER or key in [10,13])):
+			#print(solved_grid)
 			if(grid==solved_grid):
 				stdscr.addstr(20,20,"True ")
 			else:
