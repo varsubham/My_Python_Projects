@@ -1,4 +1,4 @@
-#Sudoku Game on Terminal
+Sudoku Game on Terminal
 ###### created by- varsubham
 ###### email- varsubham@gmail.com
 
