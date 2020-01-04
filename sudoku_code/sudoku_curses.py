@@ -1,6 +1,7 @@
 import curses
 #import time
-import sudoku_v1
+import sudoku_solver_algorithm
+import copy
 
 def main(stdscr):
 	i=0
@@ -23,8 +24,14 @@ def main(stdscr):
 	
 	#initial_grid=[[0]*9]*9
 	#initial_grid=sudoku_v1.main(grid)
+	new_arr=copy.deepcopy(grid)
+	sudoku_solver_algorithm.main(new_arr)
 	navigation(stdscr,current_index,grid)
+
 	#print(initial_grid)
+	#print(new_arr)
+	#print(sudoku_solver_algorithm.grid)
+	#print(sudoku_solver_algorithm.main(grid))
 	while(True):
 		key=stdscr.getch()
 		if(key==curses.KEY_UP and current_index[0]>0):
@@ -35,11 +42,11 @@ def main(stdscr):
 			current_index[1]-=1
 		elif(key==curses.KEY_RIGHT and current_index[1]<8):
 			current_index[1]+=1
-		'''elif(key==10):
-			if(grid==initial_grid):
+		elif(key==10):
+			if(grid==new_arr):
 				stdscr.addstr(20,20,"YOu won")
-			else:
-				stdscr.addstr(20,20,"You loose")'''
+			elif(grid!=new_arr):
+				stdscr.addstr(20,20,"You loose")
 		if(grid[current_index[0]][current_index[1]]==0):
 			if(key>=48 and key<=57):
 				stdscr.addstr(2*current_index[0],4*current_index[1], chr(key))
