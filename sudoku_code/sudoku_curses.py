@@ -1,5 +1,5 @@
 import curses
-import sudoku_algorithm
+import sudoku_solver_algorithm
 import random_sudoku
 import copy
 
@@ -12,7 +12,7 @@ def main(stdscr):
 	obj_random_sudoku = random_sudoku.generating_random_sudoku()
 	rand_grid_to_solve = obj_random_sudoku.random_grid()
 	solved_grid = copy.deepcopy(rand_grid_to_solve)
-	obj_sudoku_algo = sudoku_algorithm.sudoku(solved_grid)
+	obj_sudoku_algo = sudoku_solver_algorithm.sudoku(solved_grid)
 	obj_sudoku_algo.main(solved_grid)
 	obj_rand_sudoku_display = random_sudoku.random_sudoku_display(solved_grid)
 	grid = obj_rand_sudoku_display.new_sudoku(solved_grid)
