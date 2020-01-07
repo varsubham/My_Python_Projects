@@ -5,6 +5,7 @@ Sudoku Game on Terminal
 
 This is a simple sudoku game running on terminal using Python curses library.
 
+You will need to "import curses"
 
 You can start the game by running "sudoku_curses.py" file.
 
